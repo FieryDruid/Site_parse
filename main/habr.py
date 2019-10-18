@@ -5,7 +5,7 @@ import os
 
 headers= {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0'}
 
-class SiteData_habr:
+class SiteData:
     def __init__(self, count):
         self.url = "https://habr.com/ru/top/yearly/"
         self.data_dict = {}
@@ -25,8 +25,6 @@ class SiteData_habr:
             self.posts_count -= 20
             i += 1
 
-    def dict_return(self):
-        return self.data_dict
 
     def get_data(self, i):
         request = requests.get(f'{self.url}page{i}', headers = headers)
@@ -66,7 +64,7 @@ class SiteData_habr:
         self.data_dict.update(temp_dict)
 
 
-        #print(self.data_dict)
+        print(self.data_dict)
 
 
-#new_site = SiteData(input())
+new_site = SiteData(input())

@@ -17,14 +17,24 @@
 </head>
 <body>
 
-<h1>Данные с сайта list-org.com</h1>
+<h1>Данные с сайта habr.com</h1>
 <table>
+    <tr>
+        <th>Заголовок</th>
+        <th>Описание</th>
+        <th>Дата публикации</th>
+        <th>Автор</th>
+    </tr>
     {% for key, value in data.items %}
     <tr>
         <th>{{ key }}</th>
         <th>
-            {{ value }}
+            {% for item in value.0 %}
+            <p>{{ item }}</p>
+            {% endfor %}
         </th>
+        <th>{{ value.1 }}</th>
+        <th>{{ value.2 }}</th>
     </tr>
     {% endfor %}
 </table>

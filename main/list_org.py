@@ -4,7 +4,7 @@ import os
 
 headers= {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0'}
 
-class SiteData_list:
+class SiteData:
     def __init__(self, url):
         self.url = url
         self.get_data()
@@ -21,9 +21,6 @@ class SiteData_list:
             file.close()
         os.remove('site.html')
 
-    def return_data(self):
-        return (self.company_name, self.leader, self.date, self.status, self.inn_kpp, self.ogrn)
-
     def data_parse(self):
         self.company_name = self.html.xpath('//div[@class = "c2m"]/p/a/text()')[0]
         self.leader = self.html.xpath('//div[@class = "c2m"]/table/tr/td/a/text()')[0]
@@ -39,14 +36,14 @@ class SiteData_list:
             self.inn_kpp =  self.html.xpath('//div[@class = "c2m"]/table/tr[2]/td/text()')[0]
             self.ogrn = self.html.xpath('//div[@class = "c2m"]/p[4]/text()')[0][1:]
 
-        # print(f'Полное юридическое наименование: {self.company_name}')
-        # print(f'Руководитель: {self.leader}')
-        # print(f'Дата регистрации: {self.date}')
-        # print(f'Статус: {self.status}')
-        # print(f'ИНН / КПП: {self.inn_kpp}')
-        # print(f'ОГРН: {self.ogrn}')
+        print(f'Полное юридическое наименование: {self.company_name}')
+        print(f'Руководитель: {self.leader}')
+        print(f'Дата регистрации: {self.date}')
+        print(f'Статус: {self.status}')
+        print(f'ИНН / КПП: {self.inn_kpp}')
+        print(f'ОГРН: {self.ogrn}')
 
 
-# new_site = SiteData(input('Введите ссылку на компанию с ресурса list-org.com: '))
-# new_site.import_html()
-# new_site.data_parse()
+new_site = SiteData(input('Введите ссылку на компанию с ресурса list-org.com: '))
+new_site.import_html()
+new_site.data_parse()
